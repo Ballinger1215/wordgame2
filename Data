@@ -1,0 +1,83 @@
+package wordgame;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ *
+ * @author mark bollinger
+ */
+public class Data {
+    
+    private ArrayList<String> userInfo = new ArrayList<>();
+    
+    public Data() {
+        
+        userInfo = getUserInfo();
+        
+    }
+    
+    public static String userController() {
+        
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Hello player one! What's your name:\t");
+        pNames[0] = scan.next();
+        
+        
+        
+        // to search for the name in userinfo file
+        
+        // if it was found we will call a password method
+        
+        // if it was not found we will ask for a new password and add it to the file
+        
+        // reutnr the name
+        
+        String name = new String("");
+        return name;
+        
+    }
+    
+    public static void setScores(String[] userinfo){
+        //search for name in user info ArrayList
+        setUserInfo();
+        
+        // search for name in the file and replace its score with our new score
+        
+        outputfile.close();
+        inputFile.close();
+    }
+    
+    public static void getScores(){
+        
+        String filename = "scores.txt"; // filename
+        
+                File file = new File(filename); // open the file
+                Scanner inputFile = new Scanner(file);
+                
+                while(inputFile.hasNext()){
+                
+                String line = inputFile.nextLine();
+                System.out.println(line);
+                
+                }
+                
+                inputFile.close(); // close the file
+    }
+    
+    private ArrayList<String> getUserInfo(){
+        
+        //read from user file into ArrayLiust
+        
+        return new ArrayList<String>();
+        
+    }
+    
+    private static void setUserInfo(){
+        
+        //rewrite user info into file
+        
+    }
+    
+}
