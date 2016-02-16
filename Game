@@ -1,0 +1,96 @@
+package wordgame;
+
+import java.util.ArrayList;
+import java.util.Random;
+import java.util.Scanner;
+
+/**
+ *
+ * @author mark bollinger
+ */
+public class Game {
+    
+    //private String[] scores;
+    private int[] scores = new int[2];
+    private String[] pNames = new String[2];
+    Scanner inputFile = new Scanner(myFile);
+    private ArrayList<String> words = new ArrayList<>();
+    boolean notRevealed = true;
+    int w = 0;
+    char index;
+    boolean correctGuess = false;
+    int playerController = -1; // player1 == -1 and player2 == +1
+    Scanner scan = new Scanner(System.in);
+    Random rand = new Random();
+    
+    public Game(String[] userNames){
+        pNames = userNames;
+        
+        //words = getWords();
+        while (inputFile.hasNext() && w < words.length) {
+                words.add(inputFile.nextLine());
+                w++;
+            }
+        
+    }
+    
+    private void getWords(){
+        while (inputFile.hasNext() && w < words.length) {
+                words.add(inputFile.nextLine());
+                w++;
+    }
+    
+    public int[] playGame(){
+        
+            scores = {0,0};
+            
+            index = rand.nextInt(words.size());
+            
+            String word = words.get(index); //select a random number in that array range
+            words.remove(index);
+            //System.out.println(word);
+            
+            //select the word from the array
+            char[] guessWord = new char[word.length()];
+            for (int i = 0; i < word.length(); i++) {
+                guessWord[i] = '-';
+            }
+
+            System.out.println(word);
+            System.out.println(guessWord);
+
+            while (notRevealed) {
+                if (correctGuess == false) {
+
+                    playerController++;
+
+                    if (playerController == 2) {
+                        playerController = 0;
+                    }
+                }
+                correctGuess = false;
+
+                System.out.printf("%s, please guess:", pNames[playerController]);
+                String guess = scan.next(); //asking for their guess
+                notRevealed = false;
+
+                for (int i = 0; i < word.length(); i++) { //check to see if it is in the word
+
+                    if (word.charAt(i) == guess.charAt(0)) {
+
+                        guessWord[i] = guess.charAt(0); //replace the dashes with correct letter
+                        correctGuess = true;
+                        scores[playerController]++;
+                    }
+                    if (guessWord[i] == '-') {
+                        notRevealed = true;
+                    }
+
+                }
+                System.out.println(guessWord);
+
+            }
+                System.out.printf("%s: %d\n%s: %d\n", pNames[0], scores[0], pNames[1], scores[1]);
+    }
+
+}
