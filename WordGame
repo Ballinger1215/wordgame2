@@ -23,11 +23,17 @@ public class WordGame {
             input = scan.nextInt();
 
             if (input == 1) {
+                
                 gamePlay();
+                
             } else if (input == 2) {
+                
                 scores();
+                
             } else if (input == 3) {
+                
                 addWords();
+                
             }
 
             } while (input != 4);
@@ -53,7 +59,7 @@ public class WordGame {
         Data myBD = new Data();
 
         String filename = "scores.txt";
-        String filename = "gamedata.txt";
+        //String filename = "gamedata.txt";
         
         FileWriter fw = new FileWriter(filename, true);
         PrintWriter outputfile = new PrintWriter(fw);
@@ -145,6 +151,7 @@ public class WordGame {
     
     private static void scores() throws IOException {
         
+                
                 //String filename = "scores.txt"; // filename
                 
                 Data myDB = new Data();
