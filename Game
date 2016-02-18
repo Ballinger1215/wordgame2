@@ -81,16 +81,26 @@ public class Game {
                         guessWord[i] = guess.charAt(0); //replace the dashes with correct letter
                         correctGuess = true;
                         scores[playerController]++;
+                        
                     }
+                    
                     if (guessWord[i] == '-') {
                         notRevealed = true;
+                        
                     }
 
                 }
+                
                 System.out.println(guessWord);
 
             }
+            
                 System.out.printf("%s: %d\n%s: %d\n", pNames[0], scores[0], pNames[1], scores[1]);
-    }
+                outputfile.close();
+                inputFile.close();
+                
+    } while (nextRound.charAt(0) == 'y');
+    
+    return setScore(pName[winner]);
 
 }
