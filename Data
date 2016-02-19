@@ -1,107 +1,131 @@
-package wordgame;
+package wordgame2;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.Scanner;
 
 /**
  *
- * @author mark bollinger
+ * @author mbolli4593
  */
 public class Data {
+    String[][] userInfo;
     
-    private ArrayList<String> userInfo = new ArrayList<>();
-    
-    public Data() {
-        
-        userInfo = getUserInfo();
-        
+    public Data()
+    {
+        getInfoFromFile();
+        setInfoToFile();
     }
     
-    public static String userController() {
-        
-        String[] pNames = new String[2];
-        pNames = userNames;
-        Random rand = new Random();
-        Scanner scan = new Scanner(System.in);
-        
-        System.out.println("Hello player one! What's your name:\t");
-        pNames[0] = scan.next();
-        
-        System.out.println("Hello player two! What's your name:\t");
-        pNames[1] = scan.next();
-        
-        String nameList[] = new String[100]; //to get a random word
-        String name = new String();
-        
-        // to search for the name in userinfo file
-        
-        //read a file into an array of strings
-            File myFile = new File("names.txt");
+    private void getInfoFromFile()
+    {
+        // read in your usersinfo file
+    }
+    
+    private void setInfoToFile() throws FileNotFoundException
+    {
+        //write user info into file
+        ArrayList<String> dataBase = new ArrayList<>();
+            Scanner scan = new Scanner(System.in);
+            
+            File myFile = new File("userInfo.doc");
             Scanner inputFile = new Scanner(myFile);
-            while (inputFile.hasNext() && w < nameList.length) {
-                nameList[w] = inputFile.nextLine();
-                w++;
+            
+            while (inputFile.hasNext()) {
+                
+                dataBase.add(inputFile.nextLine());
+                
             }
             
+            inputFile.close();
+            int numberOfRecords = dataBase.size();
+            userInfo = new String[100][];
             
-            //select the word from the array
-            char[] guessWord = new char[name.length()];
-            for (int i = 0; i < name.length(); i++) {
-                guessWord[i] = '-';
+            for(int i =0; i < numberOfRecords; i++)
+                
+            {
+                
+                System.out.println(dataBase.get(i));
+                userInfo[i] = dataBase.get(i).split(" ");
+                
             }
-        
-        // if it was found we will call a password method
-        
-        // if it was not found we will ask for a new password and add it to the file
-        
-        // return the name
-        
-        String name = new String("");
-        return name;
-        
     }
     
-    public static void setScores(String[] userinfo){
-        //search for name in user info ArrayList
-        setUserInfo();
-        
-        // search for name in the file and replace its score with our new score
-        
-        outputfile.close();
-        inputFile.close();
-    }
-    
-    public static void getScores(){
-        
-        String filename = "scores.txt"; // filename
-        
-                File file = new File(filename); // open the file
-                Scanner inputFile = new Scanner(file);
+    public void userController()
+    {
+        int flag = -1;
+        Scanner scan = new Scanner(System.in);
+        int numberOfRecords = dataBase.size();
+        // userController method will ask for user name
+        //if it doesn’t exist
+        //in your usersInfo array
+        //it will ask for a password to create a 
+        //new user, 
+        //else it will ask for your previously saved password
+        do{
+            System.out.println("Enter a username: ");
+            String userName = new String(scan.nextLine());
+            
+            int flag = -1;
+            for (int i = 0; i < numberOfRecords; i++)
                 
-                while(inputFile.hasNext()){
-                
-                String line = inputFile.nextLine();
-                System.out.println(line);
-                
+                if (dBase[i][0].equalsIgnoreCase(userName))
+                {
+                    flag = i;
                 }
+            
+            if (flag == -1)
+            {
                 
-                inputFile.close(); // close the file
+                System.out.println("Enter a password: ");
+                String password = new String(scan.nextLine());
+
+                userInfo[numberOfRecords] = new String[3];
+                
+                userInfo[numberOfRecords][0] = userName;
+                userInfo[numberOfRecords][1] = password;
+                userInfo[numberOfRecords][2] = "0";
+                
+                flag = numberOfRecords;
+                numberOfRecords++;
+            }
+            else
+            {   
+                
+                System.out.println("Enter a password: ");
+                String password = new String(scan.nextLine());
+                
+                if(password.equals(userInfo[flag][1]))
+                {
+                    
+                    flag = -1;
+                            System.out.println("Wrong Password");
+                    
+                
+                        }
+                    }
+                }while(flag == -1);
+                
+                    
+                
+            }
+        //to let you play the game with that username.
+        //If password was correct it will return the username to gameController.
+        return new String("");
     }
     
-    private ArrayList<String> getUserInfo(){
-        
-        //read from user file into ArrayLiust
-        
-        return new ArrayList<String>();
-        
+    public void  setScores(String[] userInfo)
+    {
+        //5- Your “Data” class will have two methods to set and get highscores from usersInfo file and userController method.
+        setInfoToFile(); //run this thing to write into file
     }
     
-    private static void setUserInfo(){
-        
-        //rewrite user info into file
+    public String[][] getScores()
+    {
+        // replace new high score with old one
+        //remove the password colomn from userinfo and return the names and the scores
+        return new String[1][];
         
     }
-    
 }
