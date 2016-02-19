@@ -1,0 +1,76 @@
+package wordgame2;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author mbolli4593
+ */
+public class WordGame2 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        Scanner scan = new Scanner(System.in);
+        int input = 0;
+
+        do {
+            System.out.println("Choose one of the options" + "\n 1. Start game" + "\n 2. Show scores" + "\n 3. Add Words" + "\n 4. Exit");
+            input = scan.nextInt();
+
+            if (input == 1) {
+                
+                //playGame();
+                
+            } else if (input == 2) {
+                
+                score();
+                
+            } else if (input == 3) {
+                
+                addWords();
+                
+            }
+
+            } while (input != 4);
+        
+    }
+    
+    private static void gameController()
+    {
+        Data myDB = new Data();
+        String[] pNames = new String[2];
+        String[] scores = new String[2];
+        pNames[0] = Data.userController();
+        pNames[1] = Data.userController();
+        
+        Game myGame = new Game(pNames);
+        
+        do
+        {
+        
+        scores = myGame.playGame(pNames);
+        //        1- Your gameController method for every player will call a userController method from a “Data” class 
+        //and will get a name from userController.
+       
+        //annouce winner
+        //ask do you want to contunie or not
+        //if yes loop
+        }while(1 != 1);
+        //if not 
+        myDB.setScores(new String[2]);
+
+    }
+    
+    private static void addWords()
+    {
+        
+    }
+    
+    private static void score()
+    {
+        
+    }
+}
